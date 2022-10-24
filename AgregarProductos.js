@@ -15,7 +15,7 @@ let opc2 = 2;
 let opc3 = 3;
 let opc4 = 4;
 let opcion2;
-let opcionActual;
+let opcionActual =0;
 let opcion;
 //Proceso
 
@@ -27,7 +27,15 @@ do {
         //Ingresar opción
 
         opcion =  parseInt (prompt ("Qué parrilla desea comprar: \n 1.- Parrilla Super Junquito, precio: $5500 \n 2.-Parrilla del Mar, Precio: $3500  \n 3.- Parrilla Kids, precio: $1800 \n 4.- Parrilla para Dos, precio: $3600"));
-   
+
+        if (flag=="Y"){
+            if(opcionActual==opcion){
+                alert("Usted ya ha elegido esta opcion");
+                continue;  
+            }
+                   
+        }
+        
 
   console.log (`valor de opcion: ${opcion}`);
 
@@ -67,9 +75,10 @@ do {
                 break;
                
         }
-        
+
      
     }
+    
     
     //llamamos a la función para consultar las opciones
     comprar(opcion);
@@ -135,9 +144,9 @@ do {
 flag =
 prompt (`¿Quiere pedir otro plato? Y/N`);
 console.log ("flag", flag);
-opcionActual = opcion;
 
-console.log (`valor de opcion: ${opcionActual}`);
+opcionActual = opcion;
+console.log (`valor de opcion Actual: ${opcionActual}`);
 
 
 //Salida
