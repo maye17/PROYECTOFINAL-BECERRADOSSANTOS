@@ -190,7 +190,7 @@ RenderProduct(productList);
 
 
 
-
+//menu
 //menu canvas btn Agregar
 const trigger =document.querySelector('#menu');
 const offcanvas = document.querySelector('#menu-canvas');
