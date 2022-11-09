@@ -1,6 +1,51 @@
 
 
 const main = document.querySelector('main')
+// BUSCADOR
+
+
+const formulario =document.querySelector('#formulario');
+const btnBuscar = document.querySelector('#btnBuscar');
+const resultado =document.querySelector('#resultado')
+
+const filtrar = ()=> {
+    // console.log(formulario.value);
+    resultado.innerHTML = '';
+    const texto = formulario.value.toLowerCase();
+    for (let productoBuscar of productList){
+        let nombreProducto = productoBuscar.name.toLowerCase();
+        if(nombreProducto.indexOf (texto) !== -1){
+            resultado.innerHTML +=  `
+            <div class="box__menu__container border border-primary">
+            <div class="box__menu__container-title">
+              <h3>${productoBuscar.name}</h3>
+            </div>
+            <article class="box__menu__container-card">
+              <div class="box__menu__container-card-parr">
+                <p>${productoBuscar.description}
+                </p>            
+              </div>
+              <div class="box__menu__container-card-img"> 
+              <img src="${productoBuscar.image}" alt="">
+              </div>
+            </article>
+            <div class="box__menu__container-rec"><strong>${productoBuscar.infoParrilla}</strong></div>
+            <div class="box__menu-container-price">
+              <p>${productoBuscar.price}</p>
+            </div>
+          </div>`
+                           
+
+        }
+    }
+    if(resultado.innerHTML ===''){
+        resultado.innerHTML += `<h3>Producto no encontrado</h3>`
+        
+    }
+}
+
+btnBuscar.addEventListener('click', filtrar);
+formulario.addEventListener('keyup',filtrar)
 
 
 //DESTACADOS

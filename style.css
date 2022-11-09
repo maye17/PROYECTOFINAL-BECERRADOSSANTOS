@@ -225,6 +225,20 @@ ul, li {
 
 }
 
+.box__buscador {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-group {
+        width: 60%;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 1;
+
+}
+
 
 .box__title {
     font-size: 45px;
