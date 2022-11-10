@@ -235,7 +235,7 @@ ul, li {
         width: 60%;
         align-items: center !important;
         justify-content: center !important;
-        z-index: 1;
+        z-index: 0;
 
 }
 
