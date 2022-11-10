@@ -207,26 +207,24 @@ function RenderProduct(ListadoProductos) {
         priceDivParrilla.appendChild(priceParrilla);
     
         //Creando btn
+        const divAgregar = document.createElement('div');
+        divAgregar.classList.add('box__menu__container-btn"');
+        divAgregar.setAttribute('id','menu-container');
         const Agregar = document.createElement('div');
-        const DivAgregar =document.querySelector('.box__menu__container-btn');
-        const trigger = document.querySelector('#menu');
-        const offcanvas = document.querySelector('#menu-canvas');
-        trigger.addEventListener('click', toggleMenu);
-
-        Agregar.appendChild(DivAgregar);
-        
-        DivAgregar.appendChild(trigger);
-        DivAgregar.appendChild(offcanvas);
-        
+        Agregar.classList.add('btn-menu','btn','btn-primary');
+        Agregar.setAttribute('id','menu')
+        Agregar.innerText='Agregar';
+     
+        divAgregar.appendChild(Agregar);
+         
         //agregando todo al card
         boxMenu.appendChild(menuContainer);
         menuContainer.appendChild(containerTitle);
         menuContainer.appendChild(contentParrilla);
         menuContainer.appendChild(infoParrilla);    
         menuContainer.appendChild(priceDivParrilla);  
-        menuContainer.appendChild(DivAgregar);  
-        menuContainer.appendChild(Agregar);    
-        menuContainer.appendChild(DivAgregar);
+        menuContainer.appendChild(divAgregar);    
+
         
         box.appendChild(boxMenu);
         main.appendChild(box)
@@ -246,14 +244,16 @@ const offcanvas = document.querySelector('#menu-canvas');
 const menuProductDetail = document.querySelector('.product-detail-close');
 
 
-function toggleMenu() {
-    offcanvas.classList.toggle('menu-activo');
-    console.log('click en menu agregar');
-}
 
 // menu canvas para btn closed
 menuProductDetail.addEventListener('click',toggleMenuProductDetail)
 trigger.addEventListener('click', toggleMenu);
+
+
+function toggleMenu() {
+    offcanvas.classList.toggle('menu-activo');
+    console.log('click en menu agregar');
+}
 
 
 function toggleMenuProductDetail() {
@@ -297,8 +297,8 @@ function agregar() {
 
         }
         console.log('click quitando del carrito');
-   }
+   } 
  
-//variables precio
+
 
 
