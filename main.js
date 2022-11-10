@@ -208,7 +208,7 @@ function RenderProduct(ListadoProductos) {
     
         //Creando btn
         const divAgregar = document.createElement('div');
-        divAgregar.classList.add('box__menu__container-btn"');
+        divAgregar.classList.add('box__menu__container-btn');
         divAgregar.setAttribute('id','menu-container');
         const Agregar = document.createElement('div');
         Agregar.classList.add('btn-menu','btn','btn-primary');
@@ -262,32 +262,88 @@ function toggleMenuProductDetail() {
 }
 
 
+
+//Creando aside de menu desplegable
+const menuCarrito = document.querySelector('#menu-canvas');
+const imgDetailCarrito = document.createElement('img');
+imgDetailCarrito.setAttribute('src', product.image);
+const detailCarrito = document.createElement('div');
+detailCarrito.classList.add('product-info');
+const titleDetailCarrito = document.createElement('h2');
+titleDetailCarrito.innerText = product.name;
+const parrDetailCarrito = document.createElement('p');
+parrDetailCarrito.innerText = product.description;
+const precioDetailCarrito = document.createElement('p');
+precioDetailCarrito.innerText = `Precio: ${product.price}`;
+const btnDisminuirCarro = document.createElement('button');
+btnDisminuirCarro.classList.add('btn','btn-secondary')
+btnDisminuirCarro.setAttribute('id','disminuir');
+btnDisminuirCarro.value='disminuir';
+btnDisminuirCarro.innerText='-';
+const inputCarrito = document.createElement('input');
+inputCarrito.setAttribute('type','text');
+inputCarrito.setAttribute('id','cantidad');
+inputCarrito.value = '1';
+
+const btnAgregarCarro = document.createElement('button');
+btnAgregarCarro.classList.add('btn','btn-secondary');
+btnAgregarCarro.setAttribute('id','aumentar');
+btnAgregarCarro.value='aumentar';
+btnAgregarCarro.innerText='+';
+
+const totalCarrito =document.createElement('div');
+totalCarrito.classList.add('menu-canvas-total');
+const totalPagoCarrito = document.createElement('p');
+totalCarrito.setAttribute('id','total')
+totalPagoCarrito.innerText = 'Total';
+
+
+
+totalCarrito.appendChild(totalPagoCarrito);
+
+
+menuCarrito.appendChild(imgDetailCarrito);
+menuCarrito.appendChild(detailCarrito);
+detailCarrito.appendChild(titleDetailCarrito);
+
+detailCarrito.appendChild(parrDetailCarrito);
+detailCarrito.appendChild(precioDetailCarrito);
+detailCarrito.appendChild(btnDisminuirCarro);
+detailCarrito.appendChild(inputCarrito);
+detailCarrito.appendChild(btnAgregarCarro);  
+detailCarrito.appendChild(totalCarrito);
+
+
+
+
+
+
 //Aumentar y disminuir cantidad
 
 const agregarCarro = document.querySelector('#aumentar');
 agregarCarro.addEventListener('click', agregar);
 
-const quitarCarro = document.getElementById('disminuir');
-quitarCarro.addEventListener('click', disminuir); 
+const quitarCarro = document.querySelector('#disminuir');
+quitarCarro.addEventListener('click', disminuir);  
 
 //definiendo valor inicial
- let valor=0;
+  let valor=0;
   let cantidad;  
-
-function agregar() {
+ 
+ function agregar() {
     
     cantidad = document.getElementById('cantidad'); 
     if (cantidad.value < 100){ 
         cantidad.value ++;
         
    }
-   
+
 
    document.getElementById('cantidad').textContent = valor;
    console.log('click agregando al carrito');
 
    };
-
+ 
 
    function disminuir() {
 
@@ -297,8 +353,30 @@ function agregar() {
 
         }
         console.log('click quitando del carrito');
-   } 
+   }  
  
 
 
+//creando aside
+/* 
+                <aside class="menu-canvas" id="menu-canvas">
+                    <div class="product-detail-close">
+                      <img  src="./assets/icons8-galón-izquierdo-30.png" alt="closed" width="30px" height="30px">
+                    </div> 
+                    <img src="./assets/parrilla-frutosdelmar.jpg" alt=" frutos del mar"/> 
+                    <div class="product-info">
+                      <p>Frutos del mar</p>
+                      <p>Calamares, &nbsp;Camarones, &nbsp;Rabas, &nbsp;
+                        Mejillones, &nbsp; Ensalada rayada,  &nbsp;
+                        Bollito y/o yuca, &nbsp; Dips de Guasaca o tartara &nbsp; y
+                        500ml. de Gaseosa.</p>
+                      <p>Precio:&nbsp;$3500</p>     
+                      <button class="btn btn-secondary" id="disminuir" value="disminuir">-</button>
+                      <input type='text' id="cantidad" value="1" readonly>
+                    <button class="btn btn-secondary" id="aumentar" value="aumentar">+</button>
+                    </div> 
+                    <div class="menu-canvas-total">
+                        <p id="total">Total:</p>
+                    </div>
+                </aside>     */
 
