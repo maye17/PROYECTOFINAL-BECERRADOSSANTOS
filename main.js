@@ -1,7 +1,145 @@
-
-
 const main = document.querySelector('main')
-// BUSCADOR
+
+
+let box = document.querySelector('.box');
+let boxMenu = document.querySelector('.box__menu');
+
+let productList =[]
+productList.push ({
+    id:1,
+    name:'Parrilla Super Junquito',
+    price:5500,
+    image:'./assets/parrilla.jpeg',
+    descriptions:'carne de Res, &nbsp; pollo a la parrila, Cerdo, Chorizo, Ensalada rayada, Porcón de papas fritas, Dips de Guasaca o tartara.',
+    infoParrilla:'Recomendada para 3 y/o 4 personas.',
+    categoria:1, 
+});
+productList.push ({
+    id:2,
+    name:'Parrilla Mar y Tierra',
+    price:3500,
+    image:'./assets/parrilla-frutosdelmar.jpg',
+    descriptions:'Calamares,  Camarones,  Rabas,   Mejillones,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 500ml. de Gaseosa.',
+    infoParrilla:'Recomendada para 1 personas.',
+    categoria:2, 
+  
+});
+productList.push ({
+    id:3,
+    name:'Parrilla Kids',
+    price:1800,
+    image:'./assets/parrilla-kids.jpg',
+    descriptions:'Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Porcón de papas fritas,   Dips de Guasaca o tartara.',
+    infoParrilla:'Recomendada para niños.',
+    categoria:3, 
+  
+});
+productList.push ({
+    id:4,
+    name:'Parrilla para Dos',
+    price:3600,
+    image:'./assets/parrilla-parados.png',
+    descriptions:'Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 1.5 Lts. de Gaseosa.',
+    infoParrilla:'Recomendada para 2 personas.',
+    categoria:4, 
+});
+
+let menuContainer;
+let myBtn;
+//Insertando listado de productos en CARD
+function RenderProduct(productList) {
+    for(product of productList){
+
+         menuContainer = document.createElement('div');
+        menuContainer.classList.add('box__menu__container','border','border-primary');
+        menuContainer.setAttribute('id','boxMenu');
+        
+    
+       const containerTitle = document.createElement('div');
+        containerTitle.classList.add ('box__menu__container-title');
+        const titleParrilla = document.createElement('h3');
+        titleParrilla.innerText = product.name;
+    
+        containerTitle.appendChild(titleParrilla);
+    
+        //creando description
+        const contentParrilla = document.createElement('article');
+        contentParrilla.classList.add('box__menu__container-card');
+        const divParrParrilla = document.createElement('div');
+        divParrParrilla.classList.add('box__menu__container-card-parr');
+        const parrafoParrilla = document.createElement('p');
+        parrafoParrilla.innerText = product.descriptions;
+
+        divParrParrilla.appendChild(parrafoParrilla);
+
+        //creando imagen en el card
+        const divImgParrilla = document.createElement('div');
+        divImgParrilla.classList.add('box__menu__container-card-img')
+        const imgParrilla = document.createElement('img');
+        imgParrilla.setAttribute('src',product.image);
+    
+        divImgParrilla.appendChild(imgParrilla);     
+
+        //INSERTANDO EN EL CONTENEDOR FLEX
+
+        contentParrilla.appendChild(divParrParrilla);
+        contentParrilla.appendChild(divImgParrilla);
+    
+    //creando div de recomendación para las cards
+       const infoParrilla = document.createElement('div');
+       infoParrilla.classList.add('box__menu__container-rec')
+        const strong = document.createElement('strong');
+        strong.innerText = product.infoParrilla;
+    
+       
+        infoParrilla.appendChild(strong);
+    
+        //Creando el precio    
+        const priceDivParrilla =document.createElement('div');
+        priceDivParrilla.classList.add('box__menu-container-price');
+        const priceParrilla =document.createElement('p');
+        priceParrilla.innerText='Precio: $' + product.price;  
+        
+        priceDivParrilla.appendChild(priceParrilla);
+
+    
+    
+         
+        //agregando todo al card
+        boxMenu.appendChild(menuContainer);
+        menuContainer.appendChild(containerTitle);
+        menuContainer.appendChild(contentParrilla);
+        menuContainer.appendChild(infoParrilla);    
+        menuContainer.appendChild(priceDivParrilla);
+       
+        
+        box.appendChild(boxMenu);
+        main.appendChild(box)     
+
+     }
+    
+}
+
+
+
+let btnMenuContainer;
+let carrito =[];
+const DOMcarrito = document.querySelector('#carrito');
+const divisa = '$';
+const DOMtotal = document.querySelector('#total');
+const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+
+function init() {
+
+    RenderProduct(productList);
+    mostrarMenu();
+    botonera();    
+   
+  }; 
+
+
+
+  // BUSCADOR
 
 
 const formulario =document.querySelector('#formulario');
@@ -22,7 +160,7 @@ const filtrar = ()=> {
             </div>
             <article class="box__menu__container-card">
               <div class="box__menu__container-card-parr">
-                <p>${productoBuscar.description}
+                <p>${productoBuscar.descriptions}
                 </p>            
               </div>
               <div class="box__menu__container-card-img"> 
@@ -34,7 +172,7 @@ const filtrar = ()=> {
               <p>${productoBuscar.price}</p>
             </div>
           </div>`
-
+            mostrarMenu();
         }
     }
     if(resultado.innerHTML ===''){
@@ -47,336 +185,238 @@ btnBuscar.addEventListener('click', filtrar);
 /* formulario.addEventListener('keyup',filtrar); */
 
 
-//DESTACADOS
-
-const boxs = document.querySelector('.boxs','.container-fluid','.scrollDestacados')
-const destacadosList =[];
-destacadosList.push ({
-    name:'Parrilla Super Junquito',
-    price:5500,
-    image:'./assets/parrilla.jpeg',
-});
-destacadosList.push ({
-    name:'Cachapa con Parrilla',
-    price:1800,
-    image:'./assets/cachapa-con-parrilla.jpg',
-});
-
-destacadosList.push ({
-    name:'Bife de Chorizo',
-    price:2500,
-    image:'./assets//bife-de-chorizo-con-papas.jpg',
-});
-
-destacadosList.push ({
-    name:'Churrasco de Res',
-    price:5500,
-    image:'./assets/churrasco4.jpg',
-});
-
-destacadosList.push ({
-    name:'Brochetas de Cerdo',
-    price:5500,
-    image:'./assets//brochetas de cerdo.jpg',
-});
 
 
-function ProductDestacados(ListaDestacados) {
-    for (destacado of ListaDestacados){
-        const boxsDestacados = document.createElement('div');
-        boxsDestacados.classList.add('boxs__card');
-        const imgDestacados = document.createElement('img');
-        imgDestacados.setAttribute('src', destacado.image);
-        
-        const firtsTitleDestacados = document.createElement('h2');
-        firtsTitleDestacados.innerText = destacado.name;
-        const parrafoDestacados = document.createElement('p');
-        parrafoDestacados.innerText = 'Precio $' + destacado.price;
-        
-        //button
-        //Creando btn
-/*         const btnAgregar = document.createElement('button');
-        btnAgregar.classList.add('btn','btn-primary');
-        btnAgregar.innerText ='Agregar Destacado'; */
+  function mostrarMenu() {
+    categorias.forEach((categoria) => {
+        let menuContainer= document.getElementById('boxMenu')
+        menuContainer.setAttribute("id", `${categoria.id}`);
+        btnMenuContainer = document.createElement('div');
+        btnMenuContainer.querySelector('.box__menu__container-btn');
+        btnMenuContainer.setAttribute('id','menu-container');
+         myBtn = document.createElement("button");
+        myBtn.setAttribute('class', 'btn-menu btn btn-primary');
+        myBtn.setAttribute('id','menu');
+        myBtn.setAttribute('name','menu');
+         myBtn.setAttribute("id", `${categoria.id}`);
+        myBtn.innerHTML = categoria.nombre;
+      //Add Event
+      btnMenuContainer.appendChild(myBtn);
+      menuContainer.appendChild(btnMenuContainer); 
+   
+    });
+  }
 
-       
-        
-        boxsDestacados.appendChild(imgDestacados);
-        boxsDestacados.appendChild(firtsTitleDestacados);
-        boxsDestacados.appendChild(parrafoDestacados);
-        /* boxsDestacados.appendChild(btnDestacado); */
-        boxs.appendChild(boxsDestacados);
-        main.appendChild(boxs);
-        /* boxsDestacados.appendChild(btnAgregar);  */
+//declarando variables 
+    
+
+   /*  function renederProductos(array) {
+        menuContainer = document.getElementById("elementos");
+        div.innerHTML = "";
+        array.map((element) => {
+          let id = element.id;
+          let nombre = element.name;
+          let precio = element.price;
+          let stock = element.stock;
+          let hayNoHay;
+          if (stock > 0) {
+            hayNoHay = `<div class="actions">
+            <button class="add" id=${id}>add</button>
+            </div>`;
+          } else {
+            hayNoHay = `<div class="actions">
+            No Disponible!
+            </div>`;
+          }
+          div.innerHTML += `
+                <div class="item">
+                    <div class="title">${nombre}</div>
+                    <div class="price">${precio}</div>
+                    <div class="qty">${stock} units</div>
+                    ${hayNoHay}
+                </div>`;
+        }); */
+      /*   agregarAlCarrito(); */
+   /*    }
+ */
+
+
+let menuCarrito;
+let offcanvas;
+let boton;
+let trigger;
+let menuProductDetail;
+
+let aside;
+
+
+    function botonera() { 
+
+            myBtn=document.getElementsByName('menu');
+            offcanvas = document.querySelector('#menu-canvas');
+            menuProductDetail = document.querySelector('.product-detail-close');
+            offcanvas.appendChild(menuProductDetail);        
+             
+             
+// menu canvas para btn closed
+          
+            box.appendChild(offcanvas)
+            menuCarrito = document.createElement('div');
+            menuCarrito.setAttribute('id','elementos')
+            document.body.appendChild(menuCarrito);
+            menuCarrito.getElementsByClassName('menu-canvas');
+            let botones = document.getElementsByClassName('btn-menu btn btn-primary');
+            
+
+        //Recorriendo los botones de ver producto para el offcanvas
+            for (const boton of botones) {
+                
+                boton.addEventListener('click',() =>{
+                    myBtn=(toggleMenu());
+                    menuCarrito.innerHTML=``; 
+                    let category = categorias.find((item) => item.id == boton.id);
+                    console.log(category.description);
+                    menuCarrito.innerHTML =`<h2>${category.description}</h2>`;
+
+                    let galeria = productList.filter(
+                    (product) => product.categoria == boton.id
+                    );
+                     
+                    MostrarProductos(galeria); 
+                    main.disabled=true;
+                                           
+                }); 
+           
+            };
+            menuProductDetail.addEventListener('click', toggleMenu);
+            
      
-    };
-}
-
-
-ProductDestacados(destacadosList);
-
-// Llamando al box menu para crear tarjetas de productos parrillas
-
-const box = document.querySelector('.box')
-const boxMenu = document.querySelector('.box__menu')
-//PARRILLAS
-const productList =[]
-productList.push ({
-    name:'Parrilla Super Junquito',
-    price:5500,
-    image:'./assets/parrilla.jpeg',
-    description:'carne de Res, &nbsp; pollo a la parrila, Cerdo, Chorizo, Ensalada rayada, Porcón de papas fritas, Dips de Guasaca o tartara.',
-    infoParrilla:'Recomendada para 3 y/o 4 personas.'
-});
-productList.push ({
-    name:'Parrilla Mar y Tierra',
-    price:3500,
-    image:'./assets/parrilla-frutosdelmar.jpg',
-    description:'Calamares,  Camarones,  Rabas,   Mejillones,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 500ml. de Gaseosa.',
-    infoParrilla:'Recomendada para 1 personas.'
-  
-});
-productList.push ({
-    name:'Parrilla Kids',
-    price:1800,
-    image:'./assets/parrilla-kids.jpg',
-    description:'Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Porcón de papas fritas,   Dips de Guasaca o tartara.',
-    infoParrilla:'Recomendada para niños.'
-  
-});
-productList.push ({
-    name:'Parrilla para Dos',
-    price:3600,
-    image:'./assets/parrilla-parados.png',
-    description:'Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 1.5 Lts. de Gaseosa.',
-    infoParrilla:'Recomendada para 2 personas.'
-});
-
-//insertar al html
-function RenderProduct(ListadoProductos) {
-    for(product of ListadoProductos){
-
-        const menuContainer = document.createElement('div');
-        menuContainer.classList.add('box__menu__container','border','border-primary');
-    
-       const containerTitle = document.createElement('div');
-        containerTitle.classList.add ('box__menu__container-title');
-        const titleParrilla = document.createElement('h3');
-        titleParrilla.innerText = product.name;
-    
-        containerTitle.appendChild(titleParrilla);
-    
-        //creando description
-        const contentParrilla = document.createElement('article');
-        contentParrilla.classList.add('box__menu__container-card');
-        const divParrParrilla = document.createElement('div');
-        divParrParrilla.classList.add('box__menu__container-card-parr');
-        const parrafoParrilla = document.createElement('p');
-        parrafoParrilla.innerText = product.description;
-
-        divParrParrilla.appendChild(parrafoParrilla);
-
-        //imagen
-        const divImgParrilla = document.createElement('div');
-        divImgParrilla.classList.add('box__menu__container-card-img')
-        const imgParrilla = document.createElement('img');
-        imgParrilla.setAttribute('src',product.image);
-    
-        divImgParrilla.appendChild(imgParrilla);     
-
-        //INSERTANDO EN EL CONTENEDOR FLEX
-
-        contentParrilla.appendChild(divParrParrilla);
-        contentParrilla.appendChild(divImgParrilla);
-    
-    //creando div de recomendación
-       const infoParrilla = document.createElement('div');
-       infoParrilla.classList.add('box__menu__container-rec')
-        const strong = document.createElement('strong');
-        strong.innerText = product.infoParrilla;
-    
-       
-        infoParrilla.appendChild(strong);
-    
-        //Creando el precio    
-        const priceDivParrilla =document.createElement('div');
-        priceDivParrilla.classList.add('box__menu-container-price');
-        const priceParrilla =document.createElement('p');
-        priceParrilla.innerText='Precio: $' + product.price;  
-        
-        priceDivParrilla.appendChild(priceParrilla);
-    
-        //Creando btn
-        const divAgregar = document.createElement('div');
-        divAgregar.classList.add('box__menu__container-btn');
-        divAgregar.setAttribute('id','menu-container');
-        const Agregar = document.createElement('div');
-        Agregar.classList.add('btn-menu','btn','btn-primary');
-        Agregar.setAttribute('id','menu')
-        Agregar.innerText='Agregar';
-     
-        divAgregar.appendChild(Agregar);
-         
-        //agregando todo al card
-        boxMenu.appendChild(menuContainer);
-        menuContainer.appendChild(containerTitle);
-        menuContainer.appendChild(contentParrilla);
-        menuContainer.appendChild(infoParrilla);    
-        menuContainer.appendChild(priceDivParrilla);  
-        menuContainer.appendChild(divAgregar);    
-
-        
-        box.appendChild(boxMenu);
-        main.appendChild(box)
-
     }
-    
-}
-
-RenderProduct(productList);
-
-
 
 //menu
 //menu canvas btn Agregar
-const trigger =document.querySelector('#menu');
-const offcanvas = document.querySelector('#menu-canvas');
-const menuProductDetail = document.querySelector('.product-detail-close');
 
+//función para abrir y cerrar el menu canvas en las diferentes card
 
-
-// menu canvas para btn closed
-menuProductDetail.addEventListener('click',toggleMenuProductDetail)
-trigger.addEventListener('click', toggleMenu);
-
-
-function toggleMenu() {
-    offcanvas.classList.toggle('menu-activo');
-    console.log('click en menu agregar');
-}
-
-
-function toggleMenuProductDetail() {
-    offcanvas.classList.toggle('menu-activo');
-    console.log('click en menu agregar');
-}
-
-
-
-//Creando aside de menu desplegable
-const menuCarrito = document.querySelector('#menu-canvas');
-const imgDetailCarrito = document.createElement('img');
-imgDetailCarrito.setAttribute('src', product.image);
-const detailCarrito = document.createElement('div');
-detailCarrito.classList.add('product-info');
-const titleDetailCarrito = document.createElement('h2');
-titleDetailCarrito.innerText = product.name;
-const parrDetailCarrito = document.createElement('p');
-parrDetailCarrito.innerText = product.description;
-const precioDetailCarrito = document.createElement('p');
-precioDetailCarrito.innerText = `Precio: ${product.price}`;
-const btnDisminuirCarro = document.createElement('button');
-btnDisminuirCarro.classList.add('btn','btn-secondary')
-btnDisminuirCarro.setAttribute('id','disminuir');
-btnDisminuirCarro.value='disminuir';
-btnDisminuirCarro.innerText='-';
-const inputCarrito = document.createElement('input');
-inputCarrito.setAttribute('type','text');
-inputCarrito.setAttribute('id','cantidad');
-inputCarrito.value = '1';
-
-const btnAgregarCarro = document.createElement('button');
-btnAgregarCarro.classList.add('btn','btn-secondary');
-btnAgregarCarro.setAttribute('id','aumentar');
-btnAgregarCarro.value='aumentar';
-btnAgregarCarro.innerText='+';
-
-const totalCarrito =document.createElement('div');
-totalCarrito.classList.add('menu-canvas-total');
-const totalPagoCarrito = document.createElement('p');
-totalCarrito.setAttribute('id','total')
-totalPagoCarrito.innerText = 'Total';
-
-
-
-totalCarrito.appendChild(totalPagoCarrito);
-
-
-menuCarrito.appendChild(imgDetailCarrito);
-menuCarrito.appendChild(detailCarrito);
-detailCarrito.appendChild(titleDetailCarrito);
-
-detailCarrito.appendChild(parrDetailCarrito);
-detailCarrito.appendChild(precioDetailCarrito);
-detailCarrito.appendChild(btnDisminuirCarro);
-detailCarrito.appendChild(inputCarrito);
-detailCarrito.appendChild(btnAgregarCarro);  
-detailCarrito.appendChild(totalCarrito);
+    function toggleMenu() {
+        offcanvas.classList.toggle('menu-activo');
+        console.log('click en menu agregar');
+    }
 
 
 
 
+    function MostrarProductos(array) {
+        const div = document.querySelector('#elementos');
+        div.innerHTML='';
+        array.map((element) =>{
+            let id = element.id;
+            let name = element.name;
+            let image = element.image;
+            let descriptions= element.descriptions;
+            let infoParrilla= element.infoParrilla;
+            let price=element.price;
+            menuCarrito.innerHTML += `
+            <div class="item">
+                <h2>${name}</h2>
+                <div class="menu-canvas-element">
+                    <img src=${image}>
+                </div>
+                <div class="product-info" id="product-info">
+                    <p>${descriptions}</p>
+                    <p>${infoParrilla}</p>
+                    <P> Precio: $${price}</P>
+                    <div class="cantidadProductos" id="cantidadProductos">
+                        <button class='btn btn-secondary' id='disminuir' value='disminuir'>-
+                        </button>
+                        <input class="form-control row-6"  aria-label="Sizing example input"  type='text' id="cantidad" readonly='false'>
+                        <button class='btn btn-secondary' id='aumentar' value='aumentar' mark="info.id">+
+                        </button>
+                    </div>      
+                </div>
+            </div>`;       
+            incrementar()
+        });
+       
+    } 
 
-
-//Aumentar y disminuir cantidad
-
-const agregarCarro = document.querySelector('#aumentar');
-agregarCarro.addEventListener('click', agregar);
-
-const quitarCarro = document.querySelector('#disminuir');
-quitarCarro.addEventListener('click', disminuir);  
-
-//definiendo valor inicial
-  let valor=0;
-  let cantidad;  
- 
- function agregar() {
+    //tomando el contenedor de cantidad
+    let valor=0;
+    let cantidad =1;  
     
-    cantidad = document.getElementById('cantidad'); 
-    if (cantidad.value < 100){ 
-        cantidad.value ++;
+    function incrementar() {
         
-   }
+    
+    const productInfo= document.querySelector('#product-info');      
+    const cantidadProducto = document.querySelector('#cantidadProductos');
+    //inicializando variables  
 
 
-   document.getElementById('cantidad').textContent = valor;
-   console.log('click agregando al carrito');
+   
+        const aumentarCantidadProducto = document.querySelector('#aumentar');
+        aumentarCantidadProducto.addEventListener('click', agregar);
+        aumentarCantidadProducto.addEventListener('click', anyadirProductoAlCarrito);
 
-   };
- 
+        const disminuirCantidadProducto = document.querySelector('#disminuir');
+        disminuirCantidadProducto.addEventListener('click', disminuir); 
+        disminuirCantidadProducto.addEventListener('click',eliminarProductoDelCarrito);
+
+
+}
+
+
+ //incrementa el valor del input de cantidad en el menu offcanvas
+        function agregar() {
+        
+            cantidad = document.getElementById('cantidad'); 
+           if (cantidad.value < 100){ 
+               cantidad.value ++;  
+    
+            /*  //validando el tipo de dato
+              console.log(typeof(valor)); */      
+            }
+            document.getElementById('cantidad').textContent = valor;
+        };
+      
+//decrementa el input de cantidad en el menu offcanvas
+
 
    function disminuir() {
-
-        cantidad = document.getElementById('cantidad'); 
-        if (cantidad.value > 01){ 
+      
+        cantidad = document.getElementById('cantidad') ;
+        if (cantidad.value > 1){ 
             cantidad.value --; 
-
-        }
-        console.log('click quitando del carrito');
-   }  
+ 
+                console.log(`imprimiendo cantidad + ${cantidad}`)
+        };  
+        
+    };
  
 
 
-//creando aside
-/* 
-                <aside class="menu-canvas" id="menu-canvas">
-                    <div class="product-detail-close">
-                      <img  src="./assets/icons8-galón-izquierdo-30.png" alt="closed" width="30px" height="30px">
-                    </div> 
-                    <img src="./assets/parrilla-frutosdelmar.jpg" alt=" frutos del mar"/> 
-                    <div class="product-info">
-                      <p>Frutos del mar</p>
-                      <p>Calamares, &nbsp;Camarones, &nbsp;Rabas, &nbsp;
-                        Mejillones, &nbsp; Ensalada rayada,  &nbsp;
-                        Bollito y/o yuca, &nbsp; Dips de Guasaca o tartara &nbsp; y
-                        500ml. de Gaseosa.</p>
-                      <p>Precio:&nbsp;$3500</p>     
-                      <button class="btn btn-secondary" id="disminuir" value="disminuir">-</button>
-                      <input type='text' id="cantidad" value="1" readonly>
-                    <button class="btn btn-secondary" id="aumentar" value="aumentar">+</button>
-                    </div> 
-                    <div class="menu-canvas-total">
-                        <p id="total">Total:</p>
-                    </div>
-                </aside>     */
+
+
+function anyadirProductoAlCarrito(agregar) {
+    // Añadimos el Nodo a nuestro carrito
+    
+    // Actualizamos el carrito 
+   
+ carrito.push(agregar.target.getAttribute('marcador'));
+
+        console.log('Agregado al carrito la cantidad');
+  
+};
+
+
+function eliminarProductoDelCarrito(quitar) {
+    carrito.pop(quitar.target.getAttribute('disminuir'));
+    console.log('quitando del carrito');
+};
+
+
+
+
+init();
+
+offcanvas.appendChild(menuCarrito)
 
