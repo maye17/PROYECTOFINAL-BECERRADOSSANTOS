@@ -287,14 +287,20 @@ function EnviarPedido(e) {
     }else {
         //agregando un spinner cuando se hace el envio del pedido
         const spinner = document.querySelector('#spinner');
-        setTimeout (() =>{
-            spinner.classList.add('activo');
-            spinner.classList.remove('inactivo');
-            formulario.reset()
-        },1000);
+        spinner.classList.add('activo');
+        spinner.classList.remove('inactivo');
+        setTimeout (() => {
+            spinner.classList.remove('activo');
+            spinner.classList.add('inactivo');
+            formulario.reset();
+        },5000);
 
         borrarLocalStorage();
     }   
+}
+
+function spinnerActivo() {
+
 }
 
 //elimina la información del local storage una vez enviado el pedido
