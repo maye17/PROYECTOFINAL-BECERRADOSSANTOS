@@ -12,6 +12,7 @@
 <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"  rel="stylesheet">
 <link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css">
 <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="./spinner.css">
     <link rel="stylesheet" href="style.css">  
     <title>Churrascos El Junquito</title>
 </head>
@@ -108,39 +109,54 @@
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                           </div>
                           <div class="offcanvas-body">
-                            <div class="form-group row">
-                                <label for="name" class="col-4 col-md-4 col-xs-4 col-form-label">Nombre</label>
-                                <input type="text" id="name" class="form-control" placeholder="escribir nombre">
-                                <label for="email" class="col-4 col-md-4 col-form-label">Correo</label>
-                                <input type="text" id="email" class="form-control" placeholder="escribir Correo">
+                            <form id="procesar-pago">
+                              <div class="form-group row">
+                                <label for="cliente" class="col-4 col-md-4 col-xs-4 col-form-label">Nombre*:</label>
+                                <input type="text" id="cliente" class="form-control" placeholder="escribir nombre">
+                                <label for="telefono" class="col-4 col-md-4 col-form-label">Telefono*:</label>
+                                <input type="tel" id="telefono" class="form-control" placeholder="escribir telefono">
+                                <label for="direccion" class="col-4 col-md-4 col-form-label">Dirección:</label>
+                                <input type="text" id="direccion" class="form-control" placeholder="escribir dirección">
+                                <div id="carrito" class="container-fluid form-group table-responsive">
+                                  <table class="table"id="lista-compra" >
+                                      <thead>
+                                        <tr>
+                                          <th  scope="col">Imagen</th>
+                                          <th scope="col">Nombre</th>
+                                          <th scope="col">Precio</th>
+                                          <th scope="col">Cantidad</th>
+                                          <th scope="col">Sub Total</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                        
+                                      </tbody>
+                                      <tr>
+                                          <th colspan="4" scope="col" class="text-center">Total:
+                                              <p id="totalCompra"></p>
+                                          </th>
+                                      </tr>
+                                    </table>
+                                </div>
+                                <!-- agrengado el spinner -->
+                                <div class="inactivo" id="spinner">
+                                  <div class="spinner">
+                                    <div class="rect1"></div>
+                                    <div class="rect2"></div>
+                                    <div class="rect3"></div>
+                                    <div class="rect4"></div>
+                                    <div class="rect5"></div>
+                                  </div>
+                                </div>
                             </div>
-                            <div id="carrito" class="container-fluid form-group table-responsive">
-                              <table class="table"id="lista-compra" >
-                                  <thead>
-                                    <tr>
-                                      <th  scope="col">Imagen</th>
-                                      <th scope="col">Nombre</th>
-                                      <th scope="col">Precio</th>
-                                      <th scope="col">Cantidad</th>
-                                      <th scope="col">Sub Total</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                    
-                                  </tbody>
-                                  <tr>
-                                      <th colspan="4" scope="col" class="text-center">
-                                          <p id="totalProcesado"></p>
-                                      </th>
-                                  </tr>
-                                </table>
-                            </div>
+                  
+                            <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
+                            </form>
                             <div class="row justify.content-center d-none" id="spinner">
                                 <div class="spinner">
                                     <div class="dot1"></div>
                                 </div>
-                            </div>
-                            
+                            </div>                            
                           </div>
                         </div>
                     <!-- <button type="button" id="procesarCompra" class="btn btn-primary">Continuar comprando</button> -->

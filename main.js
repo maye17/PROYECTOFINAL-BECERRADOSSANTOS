@@ -7,6 +7,9 @@ const precioTotal = document.querySelector('#precioTotal');
 const botonVaciar = document.querySelector('#boton-vaciar');
 const procesarCompra = document.querySelector('#procesarCompra');
 const offcanvasBody = document.querySelector('.offcanvas-body');
+const totalCompra = document.querySelector('#totalCompra');
+
+
 let menuContainer;
 
 
@@ -91,10 +94,10 @@ let carrito = [];
 procesarCompra.addEventListener('click',ValidarProductosComprados)
 // variable para incrementar el valor total en el carrito
 const CarritoTotal = document.querySelector('#CarritoTotal');
-const ActivarFuncion = document.querySelector('#ActivarFuncion');
-if(ActivarFuncion === true){
-    ActivarFuncion.addEventListener('click',ProcesandoPedido);
-}
+const formulario = document.querySelector('#procesar-pago');
+formulario.addEventListener('submit', EnviarPedido)
+
+
 
 // evento que guarda la información cuando se recarga la página, buscando la informaciónen en el local storage en caso de no contener muestra vacío
 document.addEventListener('DOMContentLoaded',() => {
@@ -187,7 +190,7 @@ const mostrarCarrito = () =>{
     CarritoTotal.textContent = carrito.length;
 
     //calculando el precio total a pagar de los productos
-    precioTotal.innerText= divisa + carrito.reduce((acc,product) => acc + product.cantidad * product.price, 0, );
+    precioTotal.innerText= divisa + carrito.reduce((acc,product) => acc + product.cantidad * product.price, 0);
     guardaLocalStorage();
 }
 
@@ -232,6 +235,35 @@ function ProcesandoPedido() {
         listCompra.appendChild(filaCompra);
         console.log(listCompra)
 
-    })  
+    });
+    totalCompra.innerText = divisa + carrito.reduce((acc,product) => acc + product.cantidad * product.price, 0);
+
     
 }
+
+function EnviarPedido(e) {
+    e.preventDefault();
+    const cliente = document.querySelector('#cliente').value;
+    const telefono = document.querySelector('#telefono').value;
+    const direccion = document.querySelector('#direccion').value;
+    
+    if(cliente ==="" || telefono===""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Te falta completar el correo y el teléfono!',
+            color: '#000',
+            background: '#fff',
+            confirmButtonText:'Aceptar',
+           
+          })
+    }else {
+        const spinner = document.querySelector('#spinner');
+        spinner.classList.add('activo');
+        spinner.classList.remove('inactivo');
+     
+    
+    }
+    
+}
+
