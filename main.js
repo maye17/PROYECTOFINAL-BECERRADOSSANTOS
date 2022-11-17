@@ -1,5 +1,6 @@
 //variables
 const main = document.querySelector('main');
+const boxs = document.querySelector('.boxs','.container-fluid','.scrollDestacados');
 const box = document.querySelector('.box');
 const boxMenu = document.querySelector('.box__menu');
 const divisa = '$';
@@ -8,13 +9,42 @@ const botonVaciar = document.querySelector('#boton-vaciar');
 const procesarCompra = document.querySelector('#procesarCompra');
 const offcanvasBody = document.querySelector('.offcanvas-body');
 const totalCompra = document.querySelector('#totalCompra');
-
-
 let menuContainer;
+
+//insertando productos destacados
+
+
+destacadosList.forEach((destacado)=>{
+        const boxsDestacados = document.createElement('div');
+        boxsDestacados.classList.add('boxs__card');
+        const imgDestacados = document.createElement('img');
+        imgDestacados.setAttribute('src', destacado.image);
+        
+        const firtsTitleDestacados = document.createElement('h2');
+        firtsTitleDestacados.innerText = destacado.name;
+        const parrafoDestacados = document.createElement('p');
+        parrafoDestacados.innerText = 'Precio $' + destacado.price;
+        
+        //button
+        //Creando btn
+  /*       const btnAgregar = document.createElement('button');
+        btnAgregar.classList.add('btn','btn-primary');
+        btnAgregar.innerText ='Agregar Destacado';
+        btnAgregar.onclick = function(){agregarProductoCarrito(destacado.id)}; */
+
+        
+        boxsDestacados.appendChild(imgDestacados);
+        boxsDestacados.appendChild(firtsTitleDestacados);
+        boxsDestacados.appendChild(parrafoDestacados);
+ /*        boxsDestacados.appendChild(btnAgregar); */
+        boxs.appendChild(boxsDestacados);
+        main.appendChild(boxs);
+
+     
+    });
 
 
 //Insertando listado de productos en las cards
-
 productList.forEach((product) => {
 
     menuContainer = document.createElement('div');
@@ -43,7 +73,7 @@ productList.forEach((product) => {
     contentParrilla.appendChild(divParrParrilla);
     contentParrilla.appendChild(divImgParrilla);
 
-//creando div de recomendación para las cards
+    //creando div de recomendación para las cards
    const infoParrilla = document.createElement('div');
    infoParrilla.classList.add('box__menu__container-rec')
     const strong = document.createElement('strong');
@@ -72,8 +102,7 @@ productList.forEach((product) => {
     cantidadCard.classList.add('box__menu-container-price');
     cantidadCard.innerText = 'Cantidad' + product.cantidad;
 
-    //agregando todo al card
-    
+    //agregando todo al card   
     menuContainer.appendChild(containerTitle);
     menuContainer.appendChild(contentParrilla);
     menuContainer.appendChild(infoParrilla);    
@@ -82,7 +111,6 @@ productList.forEach((product) => {
     boxMenu.appendChild(menuContainer);
     box.appendChild(boxMenu);
     main.appendChild(box)        
- 
 
  } 
   
@@ -104,6 +132,8 @@ document.addEventListener('DOMContentLoaded',() => {
     carrito = JSON.parse(localStorage.getItem('carrito')) || []; 
     mostrarCarrito();
 })
+// validando si oculta o no el modal
+
 
 function ValidarProductosComprados(){
     if(carrito.length ===0){
@@ -126,9 +156,8 @@ function ValidarProductosComprados(){
           
     }else {
 
-       
-       /*  location.href = "comprar.html" */
-        ProcesandoPedido();
+            ProcesandoPedido();
+
     }
 }
 
@@ -138,7 +167,6 @@ botonVaciar.addEventListener('click',VaciarCarrito);
 
 function VaciarCarrito() {
     carrito.length = [];
-    console.log(carrito)
     mostrarCarrito();
     
 }
@@ -233,7 +261,6 @@ function ProcesandoPedido() {
         filaCompra.appendChild(tdCantidad);
         filaCompra.appendChild(tdSubTotal);
         listCompra.appendChild(filaCompra);
-        console.log(listCompra)
 
     });
     totalCompra.innerText = divisa + carrito.reduce((acc,product) => acc + product.cantidad * product.price, 0);
@@ -258,12 +285,19 @@ function EnviarPedido(e) {
            
           })
     }else {
+        //agregando un spinner cuando se hace el envio del pedido
         const spinner = document.querySelector('#spinner');
-        spinner.classList.add('activo');
-        spinner.classList.remove('inactivo');
-     
-    
-    }
-    
+        setTimeout (() =>{
+            spinner.classList.add('activo');
+            spinner.classList.remove('inactivo');
+            formulario.reset()
+        },1000);
+
+        borrarLocalStorage();
+    }   
 }
 
+//elimina la información del local storage una vez enviado el pedido
+function borrarLocalStorage() {
+    localStorage.removeItem('carrito');
+}

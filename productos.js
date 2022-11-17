@@ -16,7 +16,7 @@ productList.push ({
     image:'./assets/parrilla-frutosdelmar.jpg',
     description:'Calamares,  Camarones,  Rabas,   Mejillones,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 500ml. de Gaseosa.',
     recomendation:'Recomendada para 1 personas.',
-    categoria:2, 
+    categoria:1, 
     cantidad:1,
   
 });
@@ -27,7 +27,7 @@ productList.push ({
     image:'./assets/parrilla-kids.jpg',
     description:'Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Porcón de papas fritas,   Dips de Guasaca o tartara.',
     recomendation:'Recomendada para niños.',
-    categoria:3, 
+    categoria:1, 
     cantidad:1
   
 });
@@ -38,6 +38,6 @@ productList.push ({
     image:'./assets/parrilla-parados.png',
     description:'Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 1.5 Lts. de Gaseosa.',
     recomendation:'Recomendada para 2 personas.',
-    categoria:4, 
+    categoria:1, 
     cantidad:1
 });
