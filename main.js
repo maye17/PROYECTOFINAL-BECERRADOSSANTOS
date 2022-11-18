@@ -287,6 +287,7 @@ function EnviarPedido(e) {
     }else {
         //agregando un spinner cuando se hace el envio del pedido
         const spinner = document.querySelector('#spinner');
+       
         spinner.classList.add('activo');
         spinner.classList.remove('inactivo');
         setTimeout (() => {
@@ -294,16 +295,66 @@ function EnviarPedido(e) {
             spinner.classList.add('inactivo');
             formulario.reset();
         },5000);
-
+        
         borrarLocalStorage();
     }   
 }
 
-function spinnerActivo() {
-
-}
 
 //elimina la información del local storage una vez enviado el pedido
 function borrarLocalStorage() {
     localStorage.removeItem('carrito');
 }
+
+
+//función de buscar un producto
+
+const buscador = document.querySelector('#buscador');
+const btnBuscar = document.querySelector('#btnBuscar');
+const resultado =document.querySelector('#resultado');
+
+const filtrar = ()=> {
+    // console.log(formulario.value);
+    resultado.innerHTML = '';
+    const texto = buscador.value.toLowerCase();
+    for (let product of productList){
+        let nombreProducto = product.name.toLowerCase();
+        if(nombreProducto.indexOf (texto) !== -1){
+            resultado.innerHTML +=  `
+            <div class="box__menu__container border border-primary">
+            <div class="box__menu__container-title">
+              <h3>${product.name}</h3>
+            </div>
+            <article class="box__menu__container-card">
+              <div class="box__menu__container-card-parr">
+                <p>${product.description}
+                </p>            
+              </div>
+              <div class="box__menu__container-card-img"> 
+              <img src="${product.image}" alt="">
+              </div>
+            </article>
+            <div class="box__menu__container-rec"><strong>${product.recomendation}</strong></div>
+            <div class="box__menu-container-price">
+              <p>${divisa} ${product.price}</p>
+            </div>
+            <button onclick="agregarProductoCarrito(${product.id})" class="btn btn-primary">Agregar</button>
+          </div>`                
+
+        }
+    }
+    if(resultado.innerHTML ===''){
+        resultado.innerHTML += `
+        <div data-test-id="empty" class="container Fluid box__buscador-container">
+        <svg viewBox="0 0 24 24" focusable="false" role="presentation" class="buscadorNone"><path fill="currentColor" d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"></path></svg>
+        <p class="lead">No se encotraron productos..</p>
+        <div>`  
+        
+                
+    }
+    
+}
+
+
+/* btnBuscar.addEventListener('click', filtrar); */
+buscador.addEventListener('keyup',filtrar)

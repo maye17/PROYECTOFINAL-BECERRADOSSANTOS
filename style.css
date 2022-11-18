@@ -141,7 +141,7 @@ ul, li {
 .boxs {
 
 
-    margin-top: 5vh;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(5,1fr);
     justify-content: center;
@@ -228,12 +228,38 @@ ul, li {
 
 .box__buscador {
 
-    width: 500px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px 60px;
+    padding: 0 200px;
 
+
+}
+
+.box__buscador-container {
+    
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex: 1 1 0%;
+    margin-top: 3rem;
+
+}
+
+.buscadorNone {
+    color: rgb(226, 232, 240);
+    display: inline-block;
+    font-size: 64px;
+    height: 1em;
+    margin-bottom: 1rem;
+    vertical-align: middle;
+    width: 1em;
+    flex-shrink: 0;
+    backface-visibility: hidden;
 }
 
 
@@ -580,6 +606,10 @@ ul, li {
         background-image: radial-gradient(circle, #ef113b, #e61247, #dc1851, #d1205a, #c52861);
     }
 
+    .container__intro {
+        margin-top: 35vh;
+    }
+
   
 
     .boxs {
@@ -615,14 +645,14 @@ ul, li {
 @media (max-width:992px) {
 
     .container__intro {
-        margin-top: 20vh;
+        margin-top: 33vh;
         justify-content: center;
 
     }
 
  
     .container__intro p {
-        margin-top: 30vh;
+
         font-size: 15px;
     }
 
@@ -671,7 +701,7 @@ ul, li {
 @media (max-width:768px) {
 
     .container__intro {
-        margin-top: 30vh;
+        margin-top: 40vh;
         display: grid;
         grid-template-rows: repeat(3, 0.2fr);
     }
@@ -698,6 +728,10 @@ ul, li {
         .box__menu__container {
             width: 400px;
         }
+
+        .box__buscador {
+            padding: 0 40px;
+        }      
     
 }
 
@@ -705,13 +739,14 @@ ul, li {
 
 
     .container__intro {
-        margin-top: 25vh;
+        margin-top: 43vh;
     }
 
     .container__intro p {
-        margin-top: 12vh;
+
         font-size: 15px;
-        text-align: justify;
+        text-align: center;
+
     }
 
     .container__intro h4 {
@@ -734,5 +769,9 @@ ul, li {
         margin: 20px auto;
     }
 
+
+    .box__buscador {
+        padding: 0 40px;
+    }        
 }
     
