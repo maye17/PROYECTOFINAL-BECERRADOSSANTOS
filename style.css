@@ -710,7 +710,7 @@ ul, li {
     .box {
 
             display: grid;
-            grid-template-rows: repeat(3,0.3fr);
+            grid-template-rows: repeat(3,0.1fr);
             align-content: center;
 
         }
@@ -739,7 +739,7 @@ ul, li {
 
 
     .container__intro {
-        margin-top: 43vh;
+        margin-top: 3vh;
     }
 
     .container__intro p {
@@ -756,13 +756,19 @@ ul, li {
         text-align: justify;
     }
 
-
-  
-
+    .boxs{
+        width: 100%;
+        margin-left: 67px;
+    }
     #parillaSuper{
         margin-left: 32rem;
     }
+
     
+    
+    .box{
+        grid-template-rows: repeat(3,0.1fr);
+    }
     
     .box__menu__container {
         width: 370px;
@@ -772,6 +778,10 @@ ul, li {
 
     .box__buscador {
         padding: 0 40px;
-    }        
+    }   
+    
+    .fixed-top {
+        position: relative !important;
+    }
 }
     
