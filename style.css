@@ -531,6 +531,12 @@ ul, li {
     height: 30px;
   }
 
+  .separador {
+      border: 2px solid grey;
+      width: 100%;
+      
+  }
+
   
 /* Footer */
 
@@ -731,7 +737,16 @@ ul, li {
 
         .box__buscador {
             padding: 0 40px;
-        }      
+        }   
+        
+        .img-carrito {
+            width: 100px;
+            padding: 10px;
+        }
+        .img-carrito-pedido img {
+            width: 18px;
+            height: 18px;
+          }
     
 }
 

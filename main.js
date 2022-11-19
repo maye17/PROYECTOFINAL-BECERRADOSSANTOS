@@ -274,11 +274,11 @@ function EnviarPedido(e) {
     const telefono = document.querySelector('#telefono').value;
     const direccion = document.querySelector('#direccion').value;
     
-    if(cliente ==="" || telefono===""){
+    if(cliente ==="" || direccion===""){
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Te falta completar el correo y el teléfono!',
+            text: 'Te falta completar el nombre y dirección!',
             color: '#000',
             background: '#fff',
             confirmButtonText:'Aceptar',
@@ -294,11 +294,21 @@ function EnviarPedido(e) {
             spinner.classList.remove('activo');
             spinner.classList.add('inactivo');
             formulario.reset();
-        },5000);
-        
+        },3000);
+     
         borrarLocalStorage();
-    }   
+    } 
+
+    Toastify({
+        text: "Compra realizada con éxito",
+        duration: 5000,
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+      }).showToast(); 
 }
+
 
 
 //elimina la información del local storage una vez enviado el pedido
@@ -307,7 +317,7 @@ function borrarLocalStorage() {
 }
 
 
-//función de buscar un producto
+//función de buscar un producto en el filtro
 
 const buscador = document.querySelector('#buscador');
 const btnBuscar = document.querySelector('#btnBuscar');
@@ -321,6 +331,7 @@ const filtrar = ()=> {
         let nombreProducto = product.name.toLowerCase();
         if(nombreProducto.indexOf (texto) !== -1){
             resultado.innerHTML +=  `
+            <div class="container-fluid">
             <div class="box__menu__container border border-primary">
             <div class="box__menu__container-title">
               <h3>${product.name}</h3>
@@ -334,25 +345,45 @@ const filtrar = ()=> {
               <img src="${product.image}" alt="">
               </div>
             </article>
-            <div class="box__menu__container-rec"><strong>${product.recomendation}</strong></div>
+            <div class="box__menu__container-rec">
+                <strong>${product.recomendation}</strong>
+            </div>
             <div class="box__menu-container-price">
               <p>${divisa} ${product.price}</p>
             </div>
             <button onclick="agregarProductoCarrito(${product.id})" class="btn btn-primary">Agregar</button>
-          </div>`                
-
-        }
-    }
-    if(resultado.innerHTML ===''){
-        resultado.innerHTML += `
-        <div data-test-id="empty" class="container Fluid box__buscador-container">
-        <svg viewBox="0 0 24 24" focusable="false" role="presentation" class="buscadorNone"><path fill="currentColor" d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"></path></svg>
-        <p class="lead">No se encotraron productos..</p>
-        <div>`  
-        
-                
-    }
+          </div>
+          <hr class="separador">
+          </div>`  ;              
+            
+        }  
     
+    }   if(resultado.innerHTML ===''){
+            resultado.innerHTML += `
+            <div data-test-id="empty" class="container Fluid box__buscador-container">
+            <svg viewBox="0 0 24 24" focusable="false" role="presentation" class="buscadorNone"><path fill="currentColor" d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"></path></svg>
+            <p class="lead">No se encotraron productos..</p>
+            <hr class="separador">
+            <div>
+            `          
+                
+         } 
+         borrarFiltro(8);
+}
+
+//borrando la información del filtro
+
+let teclaPulsada;
+let eventoControlado = false;
+window.onload = function()  { 
+    document.onkeyup = borrarFiltro; 
+}
+function borrarFiltro(e) {
+     teclaPulsada=e.keyCode;
+    if (teclaPulsada ==8) {
+        resultado.innerHTML='';     
+    }
+    eventoControlado=false;
 }
 
 

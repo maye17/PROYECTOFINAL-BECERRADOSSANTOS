@@ -19,5 +19,10 @@ const categorias = [
         nombre:'Otros',
         description: 'Parrilla para Dos'
     },
+    {id:5,
+        nombre:'destacados',
+        description:'productos destacados'
+
+    }
 
 ]
