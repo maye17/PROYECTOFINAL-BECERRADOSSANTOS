@@ -291,7 +291,7 @@ ul, li {
 .box__menu__container {
 
     width: 600px;
-    height: 400px;
+    height: auto;
     border:1px solid black;
     margin: 5px;
     padding: 10px 0px 3px 0;
@@ -352,8 +352,8 @@ ul, li {
 }
 
 .box__menu__container-card-img img {
-    width: 250px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     justify-content: center;
     border-top-left-radius: 10px;  
     border-bottom-left-radius: 10px;

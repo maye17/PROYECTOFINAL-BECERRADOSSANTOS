@@ -60,6 +60,12 @@ productList.forEach((product) => {
     const contentParrilla = document.createElement('article');
     contentParrilla.classList.add('box__menu__container-card');
     const divParrParrilla = document.createElement('div');
+    divParrParrilla.classList.add('box__menu__container-card-list');
+    const parrParrilla = document.createElement('p');
+    parrParrilla.innerText= product.description;
+
+    divParrParrilla.appendChild(parrParrilla);
+    contentParrilla.appendChild(divParrParrilla);
 
     //creando imagen en el card
     const divImgParrilla = document.createElement('div');
@@ -295,18 +301,21 @@ function EnviarPedido(e) {
             spinner.classList.add('inactivo');
             formulario.reset();
         },3000);
+        Toastify({
+            text: "Compra realizada con éxito",
+            duration: 5000,
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
      
         borrarLocalStorage();
+        document.querySelector('tbody').innerHTML='';
+        document.querySelector('#totalCompra').innerHTML='';
+        
     } 
-
-    Toastify({
-        text: "Compra realizada con éxito",
-        duration: 5000,
-        className: "info",
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        }
-      }).showToast(); 
+ 
 }
 
 
