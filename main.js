@@ -300,6 +300,13 @@ function EnviarPedido(e) {
             spinner.classList.remove('activo');
             spinner.classList.add('inactivo');
             formulario.reset();
+            document.querySelector('tbody').innerHTML='';
+            document.querySelector('#totalCompra').innerHTML='';
+            document.querySelector('.modal-body').innerHTML='';
+            document.querySelector('#precioTotal').innerHTML='';
+            document.querySelector('#CarritoTotal').innerHTML='0';
+            
+            
         },3000);
         Toastify({
             text: "Compra realizada con éxito",
@@ -311,8 +318,6 @@ function EnviarPedido(e) {
           }).showToast();
      
         borrarLocalStorage();
-        document.querySelector('tbody').innerHTML='';
-        document.querySelector('#totalCompra').innerHTML='';
         
     } 
  
