@@ -15,7 +15,7 @@ let menuContainer;
 
 //insertando productos destacados
 const MostrarProductDestacados = async() => {
-    const productDestacadosFetch = await fetch('../JSON/productos.json')
+    const productDestacadosFetch = await fetch('productos.json')
     const productDestacadosJson = await productDestacadosFetch.json()
     const filterProductDestacados = productDestacadosJson.filter(product => product.categoria === "Destacados")
     filterProductDestacados.forEach((product)=>{
@@ -58,7 +58,7 @@ MostrarProductDestacados()
 //Insertando listado de productos en las cards
 
 async function MostrarProductos(){
-    const productFetch = await fetch('../JSON/productos.json')
+    const productFetch = await fetch('productos.json')
     productJson = await productFetch.json()
 /*      filtradoProduct = productJson.filter(product => product.categoria === categoria.id)     */    
             productJson.forEach((product) => {
@@ -351,7 +351,7 @@ const filtrarCategorias = document.querySelector('#filtrarCategorias');
 
 
 const mostrarCategorias = async()=> {
-    const categoriaFetch = await fetch('../JSON/categorias.json')
+    const categoriaFetch = await fetch('categorias.json')
     const categoriasJson = await categoriaFetch.json()
     categoriasJson.forEach(categoria => {
         const option = document.createElement('option');
