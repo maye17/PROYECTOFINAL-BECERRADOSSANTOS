@@ -289,6 +289,7 @@ function ProcesandoPedido() {
     
 }
 
+const closedOffcanvas = document.querySelector('#offcanvasRight')
 function EnviarPedido(e) {
     e.preventDefault();
     const cliente = document.querySelector('#cliente').value;
@@ -331,10 +332,12 @@ function EnviarPedido(e) {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
           }).showToast();
-          
-        borrarLocalStorage();
-        
+
+        borrarLocalStorage();  
+     
     } 
+   
+    
  
 }
 
@@ -364,7 +367,7 @@ const buscarProductosCategorias = async() => {
     resultado.innerHTML = '';
     buscador.value="";
     const categoriaElegida = categorias.value
-    const productosFetch = await fetch(`../JSON/productos.json`);
+    const productosFetch = await fetch(`productos.json`);
     const productJson= await productosFetch.json()
     const productosFiltrados = productJson.filter(product => product.categoria === categoriaElegida)
     productosFiltrados.forEach(product =>{
