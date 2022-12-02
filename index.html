@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css">
 <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<link rel="stylesheet" href="./spinner.css">
-    <link rel="stylesheet" href="style.css">  
+<link rel="stylesheet" href="./css/spinner.css">
+    <link rel="stylesheet" href="./css/style.css">  
     <title>Churrascos El Junquito</title>
 </head>
 <body>
@@ -53,14 +53,17 @@
         <section class="container-fluid container__intro">
             <p>Churrascos El junquito te ofrece una gran variedad de platos a tu elección para que degustes con la familia y amigos.</p>
             <h4>Realiza tu pedido y/o reserva por <br> <a href="https://web.whatsapp.com/" target ="_blank"><img src="./assets/icons8-whatsapp.gif" alt="Whatsapp"></a></h4>
-            <div class="box__buscador">
-              <div class="input-group mb-12">
-                <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+         <div class="box__buscador container-fluid">
+              <div class="form-floating">
+                <select class="form-select"  id="categorias" aria-label="Floating label select example">
+                </select>
+                <label for="floatingSelect">Selecionar</label>
+              </div>
+              <div class="input-group input-group-lg">
+                <input type="text" class="form-control" placeholder="Buscador..." aria-label="Username" aria-describedby="basic-addon1" id="buscador" ><span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg></span>
-                <input type="text" class="form-control " placeholder="Buscador..." aria-label="Username" aria-describedby="basic-addon1" id="buscador" >
-              </div> 
-  <!--             <button class="btn btn-info my-4" id="btnBuscar">Buscar</button>  --> 
+              </div>
             </div>
             <ul class="activo" id="resultado">             
             </ul>
@@ -71,16 +74,11 @@
         <section class="boxs container-fluid scrollDestacados">
         </section>      
         <!-- Parrillas -->
-        <section class="box">
+        <section class="box" id="sectionBox">
             <div class="box__title">
-              <h2 class="font-weight-bold">Parrillas<hr style="width:50%", size="10", color=blue ></h2>
+              <h2 class="font-weight-bold">Productos<hr style="width:50%", size="10", color=blue ></h2>
             </div>      
             <div class="box__menu">      
-<!--                 <aside class="menu-canvas" id="menu-canvas">
-                    <div class="product-detail-close">
-                        <img  src="./assets/icons8-galón-izquierdo-30.png" alt="closed" width="30px" height="30px">
-                    </div> 
-                </aside>   -->   
             </div> 
         </section>
         <section class="container-xl">
@@ -143,12 +141,8 @@
                                     <div class="rect4"></div>
                                     <div class="rect5"></div>
                                   </div>
-                                  <!-- <div class="alert alert-success" role="alert">
-                                    Compra realizada con éxito!
-                                  </div> -->
                                 </div>
-                            </div>
-                  
+                            </div>                 
                             <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
                             </form>
                             <div class="row justify.content-center d-none" id="spinner">
@@ -158,7 +152,6 @@
                             </div>                            
                           </div>
                         </div>
-                    <!-- <button type="button" id="procesarCompra" class="btn btn-primary">Continuar comprando</button> -->
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <span>Precio Total:</span>
                     <p class="text-center" id="precioTotal"></p>
@@ -188,9 +181,6 @@
       <script src="sweetalert2/dist/sweetalert2.min.js"></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="./destacados.js"></script>
-    <script src="./productos.js"></script>  
-    <script src="./categoria.js"></script>
-    <script src="./main.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

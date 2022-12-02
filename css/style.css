@@ -221,7 +221,7 @@ ul, li {
 .box {
 
     display: grid;
-    grid-template-rows: repeat(3,0.3fr);
+    grid-template-rows: repeat(3,0.1fr);
     align-content: center;
 
 }

@@ -1,7 +1,7 @@
 //variables
 const main = document.querySelector('main');
 const boxs = document.querySelector('.boxs','.container-fluid','.scrollDestacados');
-const box = document.querySelector('.box');
+const sectionBox = document.querySelector('#sectionBox');
 const boxMenu = document.querySelector('.box__menu');
 const divisa = '$';
 const precioTotal = document.querySelector('#precioTotal');
@@ -9,120 +9,135 @@ const botonVaciar = document.querySelector('#boton-vaciar');
 const procesarCompra = document.querySelector('#procesarCompra');
 const offcanvasBody = document.querySelector('.offcanvas-body');
 const totalCompra = document.querySelector('#totalCompra');
+const sectionBoxCachapa = document.querySelector('#sectionBoxCachapa')
+const modalFooter = document.querySelector('.modal-footer')
 let menuContainer;
 
 //insertando productos destacados
-
-
-destacadosList.forEach((destacado)=>{
+const MostrarProductDestacados = async() => {
+    const productDestacadosFetch = await fetch('../JSON/productos.json')
+    const productDestacadosJson = await productDestacadosFetch.json()
+    const filterProductDestacados = productDestacadosJson.filter(product => product.categoria === "Destacados")
+    filterProductDestacados.forEach((product)=>{
         const boxsDestacados = document.createElement('div');
         boxsDestacados.classList.add('boxs__card');
         const imgDestacados = document.createElement('img');
-        imgDestacados.setAttribute('src', destacado.image);
+        imgDestacados.setAttribute('src', product.image);
         
         const firtsTitleDestacados = document.createElement('h2');
-        firtsTitleDestacados.innerText = destacado.name;
+        firtsTitleDestacados.innerText = product.name;
         const parrafoDestacados = document.createElement('p');
-        parrafoDestacados.innerText = 'Precio $' + destacado.price;
+        parrafoDestacados.innerText = 'Precio $' + product.price;
         
         //button
-        //Creando btn
-  /*       const btnAgregar = document.createElement('button');
-        btnAgregar.classList.add('btn','btn-primary');
-        btnAgregar.innerText ='Agregar Destacado';
-        btnAgregar.onclick = function(){agregarProductoCarrito(destacado.id)}; */
 
+        const btnCardDes = document.createElement('div');
+        btnCardDes.classList.add('box__menu-card-btn');
+        btnCardAgregarDes =document.createElement('button');
+        btnCardAgregarDes.setAttribute('id','button')
+        btnCardAgregarDes.classList.add('btn', 'btn-primary');
+        btnCardAgregarDes.innerText='Agregar';
+        btnCardAgregarDes.onclick = function(){agregarProductoCarrito(product.id)};
+        btnCardDes.appendChild(btnCardAgregarDes);
         
         boxsDestacados.appendChild(imgDestacados);
         boxsDestacados.appendChild(firtsTitleDestacados);
         boxsDestacados.appendChild(parrafoDestacados);
- /*        boxsDestacados.appendChild(btnAgregar); */
+        boxsDestacados.appendChild(btnCardDes);  
         boxs.appendChild(boxsDestacados);
         main.appendChild(boxs);
-
      
     });
+}
+
+
+
+MostrarProductDestacados()
 
 
 //Insertando listado de productos en las cards
-productList.forEach((product) => {
 
-    menuContainer = document.createElement('div');
-    menuContainer.classList.add('box__menu__container','border','border-primary');
-    menuContainer.setAttribute('id','boxMenu'); 
-   const containerTitle = document.createElement('div');
-    containerTitle.classList.add ('box__menu__container-title');
-    const titleParrilla = document.createElement('h3');
-    titleParrilla.innerText = product.name;    
-    containerTitle.appendChild(titleParrilla);
+async function MostrarProductos(){
+    const productFetch = await fetch('../JSON/productos.json')
+    productJson = await productFetch.json()
+/*      filtradoProduct = productJson.filter(product => product.categoria === categoria.id)     */    
+            productJson.forEach((product) => {
+            menuContainer = document.createElement('div');
+            menuContainer.classList.add('box__menu__container','border','border-primary');
+            menuContainer.setAttribute('id','boxMenu'); 
+           const containerTitle = document.createElement('div');
+            containerTitle.classList.add ('box__menu__container-title');
+            const titleParrilla = document.createElement('h3');
+            titleParrilla.innerText = product.name;    
+            containerTitle.appendChild(titleParrilla);
+        
+            //creando description
+            const contentParrilla = document.createElement('article');
+            contentParrilla.classList.add('box__menu__container-card');
+            const divParrParrilla = document.createElement('div');
+            divParrParrilla.classList.add('box__menu__container-card-list');
+            const parrParrilla = document.createElement('p');
+            parrParrilla.innerText= product.description;
+        
+            divParrParrilla.appendChild(parrParrilla);
+            contentParrilla.appendChild(divParrParrilla);
+        
+            //creando imagen en el card
+            const divImgParrilla = document.createElement('div');
+            divImgParrilla.classList.add('box__menu__container-card-img')
+            const imgParrilla = document.createElement('img');
+            imgParrilla.setAttribute('src',product.image);    
+            divImgParrilla.appendChild(imgParrilla);     
+        
+            //INSERTANDO EN EL CONTENEDOR FLEX
+        
+            contentParrilla.appendChild(divParrParrilla);
+            contentParrilla.appendChild(divImgParrilla);
+        
+            //creando div de recomendación para las cards
+           const infoParrilla = document.createElement('div');
+           infoParrilla.classList.add('box__menu__container-rec')
+            const strong = document.createElement('strong');
+            strong.innerText = product.recomendation;       
+            infoParrilla.appendChild(strong);
+        
+            //Creando el precio    
+            const priceDivParrilla =document.createElement('div');
+            priceDivParrilla.classList.add('box__menu-container-price');
+            const priceParrilla =document.createElement('p');
+            priceParrilla.innerText='Precio: $' + product.price;         
+            priceDivParrilla.appendChild(priceParrilla);
+            
+            //creando botón
+            const btnCard = document.createElement('div');
+            btnCard.classList.add('box__menu-card-btn');
+            btnCardAgregar =document.createElement('button');
+            btnCardAgregar.setAttribute('id','button')
+            btnCardAgregar.classList.add('btn', 'btn-primary');
+            btnCardAgregar.innerText='Agregar';
+            btnCardAgregar.onclick = function(){agregarProductoCarrito(product.id)};
+            btnCard.appendChild(btnCardAgregar);
+            
+            //agregando cantidad
+            const cantidadCard = document.createElement('p');
+            cantidadCard.classList.add('box__menu-container-price');
+            cantidadCard.innerText = 'Cantidad' + product.cantidad;  
+                //agregando todo al card   
+                menuContainer.appendChild(containerTitle);
+                menuContainer.appendChild(contentParrilla);
+                menuContainer.appendChild(infoParrilla);    
+                menuContainer.appendChild(priceDivParrilla);
+                menuContainer.appendChild(btnCard);    
+                boxMenu.appendChild(menuContainer);    
+                
+          })
+        
+            sectionBox.appendChild(boxMenu);
+            main.appendChild(sectionBox)          
+        
+        }
 
-    //creando description
-    const contentParrilla = document.createElement('article');
-    contentParrilla.classList.add('box__menu__container-card');
-    const divParrParrilla = document.createElement('div');
-    divParrParrilla.classList.add('box__menu__container-card-list');
-    const parrParrilla = document.createElement('p');
-    parrParrilla.innerText= product.description;
-
-    divParrParrilla.appendChild(parrParrilla);
-    contentParrilla.appendChild(divParrParrilla);
-
-    //creando imagen en el card
-    const divImgParrilla = document.createElement('div');
-    divImgParrilla.classList.add('box__menu__container-card-img')
-    const imgParrilla = document.createElement('img');
-    imgParrilla.setAttribute('src',product.image);    
-    divImgParrilla.appendChild(imgParrilla);     
-
-    //INSERTANDO EN EL CONTENEDOR FLEX
-
-    contentParrilla.appendChild(divParrParrilla);
-    contentParrilla.appendChild(divImgParrilla);
-
-    //creando div de recomendación para las cards
-   const infoParrilla = document.createElement('div');
-   infoParrilla.classList.add('box__menu__container-rec')
-    const strong = document.createElement('strong');
-    strong.innerText = product.recomendation;       
-    infoParrilla.appendChild(strong);
-
-    //Creando el precio    
-    const priceDivParrilla =document.createElement('div');
-    priceDivParrilla.classList.add('box__menu-container-price');
-    const priceParrilla =document.createElement('p');
-    priceParrilla.innerText='Precio: $' + product.price;         
-    priceDivParrilla.appendChild(priceParrilla);
-    
-    //creando botón
-    const btnCard = document.createElement('div');
-    btnCard.classList.add('box__menu-card-btn');
-    btnCardAgregar =document.createElement('button');
-    btnCardAgregar.setAttribute('id','button')
-    btnCardAgregar.classList.add('btn', 'btn-primary');
-    btnCardAgregar.innerText='Agregar';
-    btnCardAgregar.onclick = function(){agregarProductoCarrito(product.id)};
-    btnCard.appendChild(btnCardAgregar);
-    
-    //agregando cantidad
-    const cantidadCard = document.createElement('p');
-    cantidadCard.classList.add('box__menu-container-price');
-    cantidadCard.innerText = 'Cantidad' + product.cantidad;
-
-    //agregando todo al card   
-    menuContainer.appendChild(containerTitle);
-    menuContainer.appendChild(contentParrilla);
-    menuContainer.appendChild(infoParrilla);    
-    menuContainer.appendChild(priceDivParrilla);
-    menuContainer.appendChild(btnCard);    
-    boxMenu.appendChild(menuContainer);
-    box.appendChild(boxMenu);
-    main.appendChild(box)        
-
- } 
-  
-)
-
-
+        MostrarProductos()
 let carrito = [];
 //procesando las compras en el carrito
 procesarCompra.addEventListener('click',ValidarProductosComprados)
@@ -131,16 +146,13 @@ const CarritoTotal = document.querySelector('#CarritoTotal');
 const formulario = document.querySelector('#procesar-pago');
 formulario.addEventListener('submit', EnviarPedido)
 
-
-
 // evento que guarda la información cuando se recarga la página, buscando la informaciónen en el local storage en caso de no contener muestra vacío
 document.addEventListener('DOMContentLoaded',() => {
     carrito = JSON.parse(localStorage.getItem('carrito')) || []; 
     mostrarCarrito();
 })
+
 // validando si oculta o no el modal
-
-
 function ValidarProductosComprados(){
     if(carrito.length ===0){
         //agregando una alerta si el carrito esta vacio
@@ -161,20 +173,15 @@ function ValidarProductosComprados(){
            
           
     }else {
-
             ProcesandoPedido();
-
     }
 }
 
-
 // llamando a la función vaciar carrito
 botonVaciar.addEventListener('click',VaciarCarrito);
-
 function VaciarCarrito() {
     carrito.length = [];
-    mostrarCarrito();
-    
+    mostrarCarrito();    
 }
 
 //agregando productos al carrito
@@ -189,8 +196,16 @@ function agregarProductoCarrito(id) {
         })
     }else {
         //agregamos productos al carrito sino esta duplicado
-        const item = productList.find((product) => product.id === id);
+        const item = productJson.find((product) => product.id === id);
         carrito.push(item);
+        Toastify({
+            text: "producto agregado",
+            duration: 5000,
+            className: "info",
+            style: {
+              background: "linear-gradient(to right top, #05372a, #00633c, #289042, #62be39, #a8eb12)",
+            }
+          }).showToast();
     }
 
     mostrarCarrito();
@@ -201,17 +216,17 @@ const mostrarCarrito = () =>{
     const modalBody = document.querySelector('.modal .modal-body');
     modalBody.innerHTML="";
     carrito.forEach(product => {
-        /* const {id, name,price, image,cantidad} = product */
+        const {id, name,price, image,cantidad} = product
         modalBody.innerHTML +=`
         <div class="modal-contenedor">
             <div>
-                <img class="img-fluid img-carrito" src="${product.image}">
+                <img class="img-fluid img-carrito" src="${image}">
             </div>
             <div>
-                <p>Producto: ${product.name}</p>
-                <p>Precio:  ${divisa} ${product.price}</p>
-                <p>Cantidad: ${product.cantidad}</p>
-                <button onclick="eliminarProductoCarrito(${product.id})" class= "btn btn-danger">Eliminar Producto</button>         
+                <p>Producto: ${name}</p>
+                <p>Precio:  ${divisa} ${price}</p>
+                <p>Cantidad: ${cantidad}</p>
+                <button onclick="eliminarProductoCarrito(${id})" class= "btn btn-danger">Eliminar Producto</button>         
             </div>
         </div>`
     });   
@@ -316,32 +331,77 @@ function EnviarPedido(e) {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
           }).showToast();
-     
+          
         borrarLocalStorage();
         
     } 
  
 }
 
-
-
 //elimina la información del local storage una vez enviado el pedido
 function borrarLocalStorage() {
     localStorage.removeItem('carrito');
 }
 
-
 //función de buscar un producto en el filtro
-
 const buscador = document.querySelector('#buscador');
-const btnBuscar = document.querySelector('#btnBuscar');
+const categorias = document.querySelector('#categorias')
 const resultado =document.querySelector('#resultado');
+const filtrarCategorias = document.querySelector('#filtrarCategorias');
 
-const filtrar = ()=> {
-    // console.log(formulario.value);
+
+const mostrarCategorias = async()=> {
+    const categoriaFetch = await fetch('../JSON/categorias.json')
+    const categoriasJson = await categoriaFetch.json()
+    categoriasJson.forEach(categoria => {
+        const option = document.createElement('option');
+        option.innerText =`${categoria}`
+        categorias.appendChild(option)
+    })
+}
+
+const buscarProductosCategorias = async() => {
     resultado.innerHTML = '';
-    const texto = buscador.value.toLowerCase();
-    for (let product of productList){
+    buscador.value="";
+    const categoriaElegida = categorias.value
+    const productosFetch = await fetch(`../JSON/productos.json`);
+    const productJson= await productosFetch.json()
+    const productosFiltrados = productJson.filter(product => product.categoria === categoriaElegida)
+    productosFiltrados.forEach(product =>{
+        resultado.innerHTML +=  `
+            <div class="container-fluid">
+            <div class="box__menu__container border border-primary">
+            <div class="box__menu__container-title">
+              <h3>${product.name}</h3>
+            </div>
+            <article class="box__menu__container-card">
+              <div class="box__menu__container-card-parr">
+                <p>${product.description}
+                </p>            
+              </div>
+              <div class="box__menu__container-card-img"> 
+              <img src="${product.image}" alt="">
+              </div>
+            </article>
+            <div class="box__menu__container-rec">
+                <strong>${product.recomendation}</strong>
+            </div>
+            <div class="box__menu-container-price">
+              <p>${divisa} ${product.price}</p>
+            </div>
+            <button onclick="agregarProductoCarrito(${product.id})" class="btn btn-primary">Agregar</button>
+          </div>
+          <hr class="separador">
+          </div>`                            
+    })
+}
+ 
+//filtro por letra en el buscador
+const filtrar = ()=> {
+    resultado.innerHTML = '';
+    categorias.value="Categorias";
+      const texto = buscador.value.toLowerCase();
+    for (let product of productJson){
         let nombreProducto = product.name.toLowerCase();
         if(nombreProducto.indexOf (texto) !== -1){
             resultado.innerHTML +=  `
@@ -382,10 +442,11 @@ const filtrar = ()=> {
             `          
                 
          } 
+
          borrarFiltro(8);
 }
 
-//borrando la información del filtro
+//borrando la información del filtro al pulsar la tecla borrar del teclado
 
 let teclaPulsada;
 let eventoControlado = false;
@@ -401,5 +462,8 @@ function borrarFiltro(e) {
 }
 
 
-/* btnBuscar.addEventListener('click', filtrar); */
-buscador.addEventListener('keyup',filtrar)
+mostrarCategorias()
+
+categorias.addEventListener('click',buscarProductosCategorias)
+buscador.addEventListener('keyup',filtrar) 
+

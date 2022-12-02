@@ -1,0 +1,182 @@
+[
+    {
+       "id":1,
+       "name":"Parrilla Super Junquito",
+       "price":5500,
+       "image":"../assets/parrilla.jpeg",
+       "description":"carne de Res, pollo a la parrila, Cerdo, Chorizo, Ensalada rayada, Porcón de papas fritas, Dips de Guasaca o tartara.",
+       "recomendation":"Recomendada para 3 y/o 4 personas.",
+       "categoria":"Parrillas",
+       "cantidad":1
+    },
+    {
+       "id":2,
+       "name":"Parrilla Mar y Tierra",
+       "price":3500,
+       "image":"../assets/parrilla-frutosdelmar.jpg",
+       "description":"Calamares,  Camarones,  Rabas,   Mejillones,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 500ml. de Gaseosa.",
+       "recomendation":"Recomendada para 1 personas.",
+       "categoria":"Parrillas",
+       "cantidad":1
+    },
+    {
+       "id":3,
+       "name":"Parrilla Kids",
+       "price":1800,
+       "image":"../assets/parrilla-kids.jpg",
+       "description":"Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Porcón de papas fritas,   Dips de Guasaca o tartara.",
+       "recomendation":"Recomendada para niños.",
+       "categoria":"Parrillas",
+       "cantidad":1
+    },
+    {
+       "id":4,
+       "name":"Parrilla para Dos",
+       "price":3600,
+       "image":"../assets/parrilla-parados.png",
+       "description":"Carne de Res,   pollo a la parrila,   Cerdo,   Chorizo,   Ensalada rayada,   Bollito y/o yuca,   Dips de Guasaca o tartara   y 1.5 Lts. de Gaseosa.",
+       "recomendation":"Recomendada para 1 persona.",
+       "categoria":"Parrillas",
+       "cantidad":1
+    },
+    {
+       "id":5,
+       "name":"Cachapa con Queso de Mano y Parrilla",
+       "price":1800,
+       "image":"../assets/cachapa-con-parrilla.jpg",
+       "description":"Tortilla de maiz tierno con queso de mano artesanal venezolano y mantequilla y porción de parrilla clásica",
+       "recomendation":"Recomendada para 1 persona.",
+       "categoria":"Cachapas",
+       "cantidad":1
+    },
+    {
+      "id":6,
+      "name":"Cachapa Tres Quesos",
+      "price":1900,
+      "image":"../assets/cachapa3quesos.webp",
+      "description":"Tortilla de maiz tierno con queso de mano artesanal venezolano, queso amarillo y queso blanco rayado con tocineta y natilla",
+      "recomendation":"Recomendada para 1 persona.",
+      "categoria":"Cachapas",
+      "cantidad":1
+   },
+   {
+      "id":7,
+      "name":"Cachapa con Queso de Mano ",
+      "price":1600,
+      "image":"../assets/cachapaconqueso.jpg",
+      "description":"Tortilla de maiz tierno con queso de mano artesanal venezolano y mantequilla",
+      "recomendation":"Recomendada para 1 persona.",
+      "categoria":"Cachapas",
+      "cantidad":1
+   },
+   {
+      "id":8,
+      "name":"Cachapa con Jamón y Queso",
+      "price":1800,
+      "image":"../assets/cachapa-jamon-queso.jpg",
+      "description":"Tortilla de maiz tierno con queso de mano artesanal venezolano y mantequilla y porción de parrilla clásica",
+      "recomendation":"Recomendada para 1 persona.",
+      "categoria":"Cachapas",
+      "cantidad":1
+   },
+    {
+       "id":9,
+       "name":"Bife de Chorizo",
+       "price":2500,
+       "image":"./assets//bife-de-chorizo-con-papas.jpg",
+       "description":"bife de chorizo de 400gr acompañado de papas fritas y ensalada a elección",
+       "recomendation":"Recomendada para 1 persona.",
+       "categoria":"Destacados",
+       "cantidad":1
+    },
+    {
+       "id":10,
+       "name":"Churrasco de Res",
+       "price":5500,
+       "image":"./assets/churrasco4.jpg",
+       "description":"churrasco de res aderezado con pimienta molida,servido con papas fritas, puré o ensalada, con un dip de chimichurri",
+       "recomendation":"Recomendada para 1 personas.",
+       "categoria":"Destacados",
+       "cantidad":1
+    },
+    {
+       "id":11,
+       "name":"Brochetas de Cerdo",
+       "price":5500,
+       "image":"./assets//brochetas de cerdo.jpg",
+       "description":"brochetas de cerdo combinadas con pimiento rojo y rodajas de cebolla.",
+       "recomendation":"Recomendada para 1 personas.",
+       "categoria":"Destacados",
+       "cantidad":1
+    },
+    {
+      "id":12,
+      "name":"Coca-cola 500ml",
+      "price":5500,
+      "image":"../assets/cocacolapequeña.jfif",
+      "description":"brochetas de cerdo combinadas con pimiento rojo y rodajas de cebolla.",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Bebidas",
+      "cantidad":1
+   },
+   {
+      "id":13,
+      "name":"Agua 500ml",
+      "price":5500,
+      "image":"../assets/agua.webp",
+      "description":"brochetas de cerdo combinadas con pimiento rojo y rodajas de cebolla.",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Bebidas",
+      "cantidad":1
+   },
+   {
+      "id":14,
+      "name":"Coca-cola 1.5 L",
+      "price":5500,
+      "image":"../assets/cocacola.webp",
+      "description":"brochetas de cerdo combinadas con pimiento rojo y rodajas de cebolla.",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Bebidas",
+      "cantidad":1
+   },
+   {
+      "id":15,
+      "name":"Sprite 1.5 L",
+      "price":5500,
+      "image":"../assets/sprite.webp",
+      "description":"brochetas de cerdo combinadas con pimiento rojo y rodajas de cebolla.",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Bebidas",
+      "cantidad":1
+   },
+   {
+      "id":16,
+      "name":"Chocotorta",
+      "price":600,
+      "image":"../assets/chocotorta.webp",
+      "description":"Tarta de galletas de chocolate con dulce de leche y phila",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Postres",
+      "cantidad":1
+   },
+   {
+      "id":17,
+      "name":"Cheesecake",
+      "price":5500,
+      "image":"../assets/cheesecake.jpg",
+      "description":"Hecho a base de ricota, queso quark y azúcar.",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Postres",
+      "cantidad":1
+   },
+   {
+      "id":18,
+      "name":"Torta de ricota",
+      "price":5500,
+      "image":"../assets/tortaricota.jpg",
+      "description":"Torta de ricota hecha a base de galletitas de vainilla con queso blanco y queso phila.",
+      "recomendation":"Recomendada para 1 personas.",
+      "categoria":"Postres",
+      "cantidad":1
+   }
+ ]
