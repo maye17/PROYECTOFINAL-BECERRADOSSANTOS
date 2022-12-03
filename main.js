@@ -11,6 +11,9 @@ const offcanvasBody = document.querySelector('.offcanvas-body');
 const totalCompra = document.querySelector('#totalCompra');
 const sectionBoxCachapa = document.querySelector('#sectionBoxCachapa')
 const modalFooter = document.querySelector('.modal-footer')
+const closedOffcanvas = document.querySelector('#offcanvasRight')
+const body = document.querySelector('body')
+const closedModal = document.querySelector('#modal')
 let menuContainer;
 
 //insertando productos destacados
@@ -170,7 +173,6 @@ function ValidarProductosComprados(){
               confirmButtonText:'Aceptar',
             footer: '<a href="./index.html">Agrega productos al carrito</a>'
           })
-           
           
     }else {
             ProcesandoPedido();
@@ -200,7 +202,7 @@ function agregarProductoCarrito(id) {
         carrito.push(item);
         Toastify({
             text: "producto agregado",
-            duration: 5000,
+            duration: 3000,
             className: "info",
             style: {
               background: "linear-gradient(to right top, #05372a, #00633c, #289042, #62be39, #a8eb12)",
@@ -256,6 +258,9 @@ function guardaLocalStorage() {
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
+//cerrado el modal al procesar pedido
+
+
 function ProcesandoPedido() {
 
     carrito.forEach((product)=>{
@@ -285,11 +290,12 @@ function ProcesandoPedido() {
 
     });
     totalCompra.innerText = divisa + carrito.reduce((acc,product) => acc + product.cantidad * product.price, 0);
+    
+    
 
     
 }
 
-const closedOffcanvas = document.querySelector('#offcanvasRight')
 function EnviarPedido(e) {
     e.preventDefault();
     const cliente = document.querySelector('#cliente').value;
@@ -321,7 +327,7 @@ function EnviarPedido(e) {
             document.querySelector('.modal-body').innerHTML='';
             document.querySelector('#precioTotal').innerHTML='';
             document.querySelector('#CarritoTotal').innerHTML='0';
-            
+                        
             
         },3000);
         Toastify({
@@ -332,11 +338,15 @@ function EnviarPedido(e) {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
           }).showToast();
-
-        borrarLocalStorage();  
+                 
      
     } 
-   
+    
+    VaciarCarrito()
+    borrarLocalStorage(); 
+    setTimeout(()=>{
+    closedOffcanvas.classList.remove('show')
+    },3000)
     
  
 }
