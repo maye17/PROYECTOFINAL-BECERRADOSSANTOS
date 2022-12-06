@@ -92,7 +92,7 @@
     {
        "id":10,
        "name":"Churrasco de Res",
-       "price":5500,
+       "price":2200,
        "image":"./assets/churrasco4.jpg",
        "description":"churrasco de res aderezado con pimienta molida,servido con papas fritas, puré o ensalada, con un dip de chimichurri",
        "recomendation":"Recomendada para 1 personas.",
@@ -102,7 +102,7 @@
     {
        "id":11,
        "name":"Brochetas de Cerdo",
-       "price":5500,
+       "price":2800,
        "image":"./assets//brochetas de cerdo.jpg",
        "description":"brochetas de cerdo combinadas con pimiento rojo y rodajas de cebolla.",
        "recomendation":"Recomendada para 1 personas.",
@@ -112,7 +112,7 @@
     {
       "id":12,
       "name":"Coca-cola 500ml",
-      "price":5500,
+      "price":150,
       "image":"./assets/cocacolapequeña.jfif",
       "description":"",
       "recomendation":"",
@@ -122,7 +122,7 @@
    {
       "id":13,
       "name":"Agua 500ml",
-      "price":5500,
+      "price":300,
       "image":"./assets/agua.webp",
       "description":"",
       "recomendation":"",
@@ -132,7 +132,7 @@
    {
       "id":14,
       "name":"Coca-cola 1.5 L",
-      "price":5500,
+      "price":400,
       "image":"./assets/cocacola.webp",
       "description":"",
       "recomendation":"",
@@ -142,7 +142,7 @@
    {
       "id":15,
       "name":"Sprite 1.5 L",
-      "price":5500,
+      "price":400,
       "image":"./assets/sprite.webp",
       "description":"",
       "recomendation":"",
@@ -172,7 +172,7 @@
    {
       "id":18,
       "name":"Torta de ricota",
-      "price":9500,
+      "price":950,
       "image":"./assets/tortaricota.jpg",
       "description":"Torta de ricota hecha a base de galletitas de vainilla con queso blanco y queso phila.",
       "recomendation":"",

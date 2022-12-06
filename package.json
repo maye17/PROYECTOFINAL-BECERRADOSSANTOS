@@ -1,0 +1,22 @@
+{
+  "name": "preentrega-becerradossantos",
+  "version": "1.0.0",
+  "description": "proyecto práctico js",
+  "main": "main.js",
+  "scripts": {
+    "build-sass": "node-sass --include-path scss ./scss/style.scss ./css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maye17/PREENTREGA-BECERRADOSSANTOS.git"
+  },
+  "author": "Mayerlin Becerra Dos Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maye17/PREENTREGA-BECERRADOSSANTOS/issues"
+  },
+  "homepage": "https://github.com/maye17/PREENTREGA-BECERRADOSSANTOS#readme",
+  "devDependencies": {
+    "node-sass": "^8.0.0"
+  }
+}
